@@ -1,0 +1,16 @@
+﻿using System.Collections.ObjectModel;
+
+namespace AvaloniaApplication2.ViewModels
+{
+    public partial class MainWindowViewModel : ViewModelBase
+    {
+        public ObservableCollection<ObservableCollection<char>> Attempts { get; } = new()
+        {
+            new ObservableCollection<char> { 'A', 'P', 'P', 'L', 'E' },
+            new ObservableCollection<char> { 'B', 'E', 'A', 'R', '_' },
+            new ObservableCollection<char> { '_', '_', '_', '_', '_' },
+            new ObservableCollection<char> { '_', '_', '_', '_', '_' },
+            new ObservableCollection<char> { '_', '_', '_', '_', '_' }
+        };
+    }
+}

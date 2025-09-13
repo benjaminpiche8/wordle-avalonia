@@ -1,0 +1,17 @@
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace AvaloniaApplication2.ViewModels
+{
+    public partial class MainWindowViewModel : ViewModelBase
+    {
+        public List<List<char>> Attempts { get; } =
+        [
+            ['A', 'P', 'P', 'L', 'E'],
+            ['B', 'E', 'A', 'R', '_'],
+            ['_', '_', '_', '_', '_'],
+            ['_', '_', '_', '_', '_'],
+            ['_', '_', '_', '_', '_'],
+        ];
+    }
+}

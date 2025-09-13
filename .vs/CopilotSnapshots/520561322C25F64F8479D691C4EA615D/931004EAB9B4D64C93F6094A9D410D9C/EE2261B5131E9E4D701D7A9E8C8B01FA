@@ -1,0 +1,29 @@
+﻿using System.Collections.ObjectModel;
+
+namespace AvaloniaApplication2.ViewModels
+{
+    public class WordRow
+    {
+        public ObservableCollection<char> Letters { get; set; } = new();
+        
+        public WordRow(params char[] letters)
+        {
+            foreach (var letter in letters)
+            {
+                Letters.Add(letter);
+            }
+        }
+    }
+
+    public partial class MainWindowViewModel : ViewModelBase
+    {
+        public ObservableCollection<WordRow> Attempts { get; } = new()
+        {
+            new WordRow('A', 'P', 'P', 'L', 'E'),
+            new WordRow('B', 'E', 'A', 'R', '_'),
+            new WordRow('_', '_', '_', '_', '_'),
+            new WordRow('_', '_', '_', '_', '_'),
+            new WordRow('_', '_', '_', '_', '_')
+        };
+    }
+}

@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication2.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="using:System"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication2.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication2"
+		Background="#121213">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+	<ItemsControl ItemsSource="{Binding Attempts}" VerticalAlignment="Center">
+		<ItemsControl.ItemTemplate>
+			<DataTemplate x:DataType="vm:WordRow">
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
+					<ItemsControl ItemsSource="{Binding Letters}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate x:DataType="system:Char">
+								<Border Width="50" Height="50"
+                                        BorderBrush="#3A3A3C" BorderThickness="1.5"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Margin="2">
+									<TextBlock Text="{Binding}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="24"
+                                               FontWeight="Bold"/>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
+				</StackPanel>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+	</ItemsControl>
+
+</Window>
