@@ -15,35 +15,72 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
-	<ItemsControl ItemsSource="{Binding Attempts}" VerticalAlignment="Center">
-		<ItemsControl.ItemTemplate>
-			<DataTemplate x:DataType="vm:WordRow">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
-					<ItemsControl ItemsSource="{Binding Letters}">
-						<ItemsControl.ItemTemplate>
-							<DataTemplate x:DataType="system:Char">
-								<Border Width="50" Height="50"
-                                        BorderBrush="#3A3A3C" BorderThickness="1.5"
-                                        HorizontalAlignment="Center" VerticalAlignment="Center"
-                                        Margin="2">
-									<TextBlock Text="{Binding}"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="24"
-                                               FontWeight="Bold"/>
-								</Border>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
+    <Window.Resources>
+        <vm:KeyToWidthConverter x:Key="KeyToWidthConverter"/>
+    </Window.Resources>
 
-						<ItemsControl.ItemsPanel>
-							<ItemsPanelTemplate>
-								<StackPanel Orientation="Horizontal"/>
-							</ItemsPanelTemplate>
-						</ItemsControl.ItemsPanel>
-					</ItemsControl>
-				</StackPanel>
-			</DataTemplate>
-		</ItemsControl.ItemTemplate>
-	</ItemsControl>
+	<Grid>
+		<StackPanel VerticalAlignment="Center">
+			<ItemsControl ItemsSource="{Binding Attempts}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate x:DataType="vm:WordRow">
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
+							<ItemsControl ItemsSource="{Binding Letters}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate x:DataType="system:Char">
+										<Border Width="50" Height="55"
+											BorderBrush="#3A3A3C" BorderThickness="1.5"
+											HorizontalAlignment="Center" VerticalAlignment="Center"
+											Margin="2.5">
+											<TextBlock Text="{Binding}"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Center"
+												   FontSize="24"
+												   FontWeight="Bold"/>
+										</Border>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
 
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal"/>
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+							</ItemsControl>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+			
+			<ItemsControl ItemsSource="{Binding KeyboardLetters}" VerticalAlignment="Center" Margin="0,5,0,0">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate x:DataType="vm:KeyboardRow">
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
+							<ItemsControl ItemsSource="{Binding Letters}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate x:DataType="system:String">
+										<Border Width="{Binding ., Converter={StaticResource KeyToWidthConverter}}" Height="60"
+											HorizontalAlignment="Center" VerticalAlignment="Center"
+											Background="#818384" CornerRadius="5" Margin="3">
+											<TextBlock Text="{Binding}"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Center"
+												   FontSize="18"
+												   FontWeight="Bold"/>
+										</Border>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal"/>
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+							</ItemsControl>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</StackPanel>
+	</Grid>
 </Window>
